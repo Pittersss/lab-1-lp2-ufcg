@@ -1,14 +1,14 @@
+package pacote;
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.ArrayList;
 
-/* * * Laboratorio de Programacao 2 - Lab 1 * * @author Pedro Henrique Malaquias da Silva - 123110443 * */
-
-public class Exercicio8 
-{
-    public static void main(String[] args)
+public class Exercicio8 {
+	
+	public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Integer> notas = new ArrayList<Integer>();
+        int[] notas = new int[10];
+        int contadorIndex = 0;
         while (true)
         {
            String valor = sc.nextLine();
@@ -16,7 +16,12 @@ public class Exercicio8
            {
             break;
            }
-           notas.add(Integer.parseInt(valor.split(" ")[1]));
+           if (ArraySemEspaco(contadorIndex, notas))
+           {
+        	   DuplicarArray(notas);
+           }
+           notas[contadorIndex] = (Integer.parseInt(valor.split(" ")[1]));
+           contadorIndex += 1;
         }
 
         System.out.println("maior: " + Maior(notas));
@@ -25,9 +30,9 @@ public class Exercicio8
         System.out.println("acima: " + MaioresSetecentos(notas));
         System.out.println("abaixo: " + MenoresSetecentos(notas));
     }
-    public static int Maior(ArrayList<Integer> lista)
+    public static int Maior(int[] lista)
     {
-        int maior = lista.get(0);
+        int maior = lista[0];
         for (int numero: lista)
         {
             if (numero > maior)
@@ -37,9 +42,9 @@ public class Exercicio8
         }
         return maior;
     }
-    public static int Menor(ArrayList<Integer> lista)
+    public static int Menor(int[] lista)
     {
-        int menor = lista.get(0);
+        int menor = lista[0];
         for (int numero: lista)
         {
             if (numero < menor)
@@ -49,16 +54,16 @@ public class Exercicio8
         }
         return menor;
     }
-    public static int Media(ArrayList<Integer> lista)
+    public static int Media(int[] lista)
     {
         int soma = 0;
         for (int numero: lista)
         {
             soma += numero;
         }
-        return soma/lista.size();
+        return soma/lista.length;
     }
-    public static int MenoresSetecentos(ArrayList<Integer> lista)
+    public static int MenoresSetecentos(int[] lista)
     {
         int counter = 0;
         for (int numero: lista)
@@ -70,7 +75,7 @@ public class Exercicio8
         }
         return counter;
     }
-    public static int MaioresSetecentos(ArrayList<Integer> lista)
+    public static int MaioresSetecentos(int[] lista)
     {
         int counter = 0;
         for (int numero: lista)
@@ -81,5 +86,28 @@ public class Exercicio8
             }
         }
         return counter;
-    } 
-}
+    }
+    public static boolean ArraySemEspaco(int indexPreenchido, int[] lista)
+    {
+     if (indexPreenchido == (lista.length-1))
+     {
+    	 return true;
+     }
+    	
+     return false;
+    }
+    public static void DuplicarArray(int[] listaAntiga)
+    {
+    	int novoTamanho = listaAntiga.length * 2;
+    	int[] novaLista = new int[novoTamanho];
+    	
+    	for (int i = 0; i < listaAntiga.length; i++)
+    	{
+    		novaLista[i] = listaAntiga[i];
+    	}
+    	
+    	//listaAntiga = novaLista.clone();
+    	
+    	
+    }
+ }
